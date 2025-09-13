@@ -1,0 +1,9 @@
+<resources>
+    <!-- Historical theme colors -->
+    <color name="colorBackground">#F5F2E7</color> <!-- parchment -->
+    <color name="colorPrimary">#7B2C2C</color> <!-- deep maroon -->
+    <color name="colorPrimaryDark">#5A1F1F</color> <!-- darker maroon -->
+    <color name="colorAccent">#C4A35A</color> <!-- gold -->
+    <color name="colorTextDark">#2E2E2E</color> <!-- dark gray -->
+    <color name="colorTextLight">#F5F2E7</color> <!-- cream/white -->
+</resources>

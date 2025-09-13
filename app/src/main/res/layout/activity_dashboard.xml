@@ -1,0 +1,48 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F2E7">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to Heritage AR"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#7B2C2C"
+            android:fontFamily="serif"/>
+
+        <Button
+            android:id="@+id/btnArtifacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Artifacts"
+            android:textColor="#F5F2E7"
+            android:backgroundTint="#7B2C2C"
+            android:layout_marginTop="20dp"/>
+
+        <Button
+            android:id="@+id/btnArtifactList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Launch AR Viewer"
+            android:textColor="#7B2C2C"
+            android:backgroundTint="#C4A35A"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:textColor="#F5F2E7"
+            android:backgroundTint="#2E2E2E"
+            android:layout_marginTop="12dp"/>
+    </LinearLayout>
+</ScrollView>

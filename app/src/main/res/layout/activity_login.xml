@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="#F5F2E7"
+    android:padding="24dp">
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/arlogo"
+    android:contentDescription="App Logo"
+    android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CrossAR"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:textColor="#7B2C2C"
+        android:fontFamily="serif"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Email input -->
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:backgroundTint="#7B2C2C"
+        android:textColor="#2E2E2E"/>
+
+    <!-- Password input -->
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:backgroundTint="#7B2C2C"
+        android:textColor="#2E2E2E"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Login button -->
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textColor="#F5F2E7"
+        android:backgroundTint="#7B2C2C"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Register text -->
+    <TextView
+        android:id="@+id/btnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don’t have an account? Register"
+        android:textColor="#7B2C2C"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>
