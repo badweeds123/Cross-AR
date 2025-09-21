@@ -29,7 +29,7 @@
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="Username"
         android:backgroundTint="#7B2C2C"
         android:textColor="#2E2E2E"/>
 

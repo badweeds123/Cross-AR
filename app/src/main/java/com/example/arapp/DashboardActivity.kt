@@ -1,30 +1,35 @@
 package com.example.arapp
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class DashboardActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        val btnArtifacts = findViewById<Button>(R.id.btnArtifacts)
-        val btnArtifactList = findViewById<Button>(R.id.btnArtifactList)
-        val btnLogout = findViewById<Button>(R.id.btnLogout)
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
 
-        btnArtifacts.setOnClickListener {
-            startActivity(Intent(this, ArtifactListActivity::class.java))
+        if (savedInstanceState == null) {
+            loadFragment(DashboardFragment())
         }
 
-        btnArtifactList.setOnClickListener {
-            startActivity(Intent(this, ArtifactListActivity::class.java))
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_dashboard -> loadFragment(DashboardFragment())
+                R.id.nav_artifacts -> loadFragment(ArtifactsFragment())
+                R.id.nav_profile -> loadFragment(ProfileFragment())
+            }
+            true
         }
+    }
 
-        btnLogout.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
     }
 }

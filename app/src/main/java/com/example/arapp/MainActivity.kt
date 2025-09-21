@@ -1,6 +1,7 @@
 package com.example.arapp
 
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.ar.core.ArCoreApk
@@ -24,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         val availability = ArCoreApk.getInstance().checkAvailability(this)
         if (!availability.isSupported) {
             Toast.makeText(this, "AR not supported on this device.", Toast.LENGTH_LONG).show()
-            // Delay exit to avoid leaked window
             window.decorView.post { finish() }
             return
         }
@@ -62,6 +62,11 @@ class MainActivity : AppCompatActivity() {
                     node.setParent(anchorNode)
                     node.renderable = renderable
                     node.select()
+
+                    // ✅ Update AR overlay with artifact name
+                    val artifactName = intent.getStringExtra("artifact_name") ?: "Artifact"
+                    val tv = renderable.view.findViewById<TextView>(R.id.arText)
+                    tv.text = artifactName
                 }
                 .exceptionally { throwable ->
                     Toast.makeText(
