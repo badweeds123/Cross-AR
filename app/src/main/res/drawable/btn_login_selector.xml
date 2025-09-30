@@ -1,0 +1,30 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Hovered: darker color + higher elevation -->
+    <item android:state_hovered="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#E67C7C"/>
+                    <corners android:radius="4dp"/>
+                    <padding android:top="2dp" android:bottom="2dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <!-- Pressed: even darker color -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#E67C7C"/>
+            <corners android:radius="4dp"/>
+        </shape>
+    </item>
+
+    <!-- Default -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#4D1515"/>
+            <corners android:radius="4dp"/>
+        </shape>
+    </item>
+</selector>
