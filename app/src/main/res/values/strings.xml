@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">CrossAR</string>
     <string name="hcdc_artifact_text">This is HCDC Artifact</string>
+    <string name="artifact_image">Artifact image</string>
 </resources>

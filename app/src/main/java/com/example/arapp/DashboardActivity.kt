@@ -13,6 +13,60 @@ class DashboardActivity : AppCompatActivity() {
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
 
+        // ✅ Optional: populate sample artifacts into database (only if empty)
+        val dbHelper = DatabaseHelper(this)
+        if (dbHelper.getArtifacts().isEmpty()) {
+            dbHelper.insertArtifact(
+                name = "Projector",
+                description = "",
+                catalogueNumber = "2022.1.1",
+                physicalDescription = "",
+                condition = "",
+                restrictions = "",
+                source = "Holy Cross of Davao College"
+            )
+
+            dbHelper.insertArtifact(
+                name = "Artifact 2",
+                description = "",
+                catalogueNumber = "2022.1.2",
+                physicalDescription = "",
+                condition = "",
+                restrictions = "",
+                source = "Holy Cross of Davao College"
+            )
+
+            dbHelper.insertArtifact(
+                name = "Artifact 3",
+                description = "",
+                catalogueNumber = "2022.1.3",
+                physicalDescription = "",
+                condition = "",
+                restrictions = "",
+                source = "Holy Cross of Davao College"
+            )
+
+            dbHelper.insertArtifact(
+                name = "Artifact 4",
+                description = "",
+                catalogueNumber = "2022.1.4",
+                physicalDescription = "",
+                condition = "",
+                restrictions = "",
+                source = "Holy Cross of Davao College"
+            )
+
+            dbHelper.insertArtifact(
+                name = "Artifact 5",
+                description = "",
+                catalogueNumber = "2022.1.5",
+                physicalDescription = "",
+                condition = "",
+                restrictions = "",
+                source = "Holy Cross of Davao College"
+            )
+        }
+
         if (savedInstanceState == null) {
             loadFragment(DashboardFragment())
         }

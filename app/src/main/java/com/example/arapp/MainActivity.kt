@@ -1,6 +1,7 @@
 package com.example.arapp
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,8 +21,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // find the AR fragment from the layout
         arFragment = supportFragmentManager.findFragmentById(R.id.arFragment) as? ArFragment
 
+        // check AR availability
         val availability = ArCoreApk.getInstance().checkAvailability(this)
         if (!availability.isSupported) {
             Toast.makeText(this, "AR not supported on this device.", Toast.LENGTH_LONG).show()
@@ -29,11 +32,14 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+        // configure AR session and place object
         arFragment?.arSceneView?.post {
             val session = arFragment?.arSceneView?.session
             if (session != null) {
-                val config = Config(session)
-                config.lightEstimationMode = Config.LightEstimationMode.AMBIENT_INTENSITY
+                val config = Config(session).apply {
+                    // ✅ disable HDR light estimation to avoid the crash
+                    lightEstimationMode = Config.LightEstimationMode.AMBIENT_INTENSITY
+                }
                 session.configure(config)
                 placeObjectInFront()
             } else {
@@ -46,27 +52,40 @@ class MainActivity : AppCompatActivity() {
     private fun placeObjectInFront() {
         arFragment?.let { fragment ->
             ViewRenderable.builder()
-                .setView(this, R.layout.ar_image_with_text) // custom AR layout
+                .setView(this, R.layout.ar_image_with_text)
                 .build()
                 .thenAccept { renderable ->
+
+                    // artifact data passed from ArtifactDetailActivity
+                    val artifactName = intent.getStringExtra("artifact_name") ?: "Artifact"
+                    val artifactImageRes = intent.getIntExtra(
+                        "artifact_imageRes",
+                        R.drawable.default_artifact_image
+                    )
+
+                    // position one meter in front of camera
                     val camera = fragment.arSceneView.scene.camera
                     val forward = camera.forward
-                    val cameraPosition = camera.worldPosition
-                    val positionInFront = Vector3.add(cameraPosition, forward.scaled(1f))
+                    val cameraPos = camera.worldPosition
+                    val positionInFront = Vector3.add(cameraPos, forward.scaled(1f))
 
-                    val anchorNode = AnchorNode()
-                    anchorNode.worldPosition = positionInFront
-                    anchorNode.setParent(fragment.arSceneView.scene)
+                    // anchor node for the object
+                    val anchorNode = AnchorNode().apply {
+                        worldPosition = positionInFront
+                        parent = fragment.arSceneView.scene
+                    }
 
-                    val node = TransformableNode(fragment.transformationSystem)
-                    node.setParent(anchorNode)
-                    node.renderable = renderable
-                    node.select()
+                    // create a transformable node as child of anchor
+                    val transformableNode = TransformableNode(fragment.transformationSystem).apply {
+                        parent = anchorNode
+                        this.renderable = renderable
+                        select()
+                    }
 
-                    // ✅ Update AR overlay with artifact name
-                    val artifactName = intent.getStringExtra("artifact_name") ?: "Artifact"
-                    val tv = renderable.view.findViewById<TextView>(R.id.arText)
-                    tv.text = artifactName
+                    // update AR overlay views
+                    renderable.view.findViewById<TextView>(R.id.arText).text = artifactName
+                    renderable.view.findViewById<ImageView>(R.id.arImage)
+                        .setImageResource(artifactImageRes)
                 }
                 .exceptionally { throwable ->
                     Toast.makeText(

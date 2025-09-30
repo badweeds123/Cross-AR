@@ -1,35 +1,66 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center_horizontal"
-    android:background="#F5F2E7">
+    android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tvArtifactName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Artifact Name"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="#7B2C2C"
-        android:layout_marginBottom="12dp" />
-
-    <TextView
-        android:id="@+id/tvArtifactDescription"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Artifact description goes here..."
-        android:textSize="16sp"
-        android:textColor="#2E2E2E"
-        android:layout_marginBottom="20dp" />
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/btnViewAR"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View in AR"
-        android:textColor="#F5F2E7"
-        android:backgroundTint="#7B2C2C" />
-</LinearLayout>
+        <ImageView
+            android:id="@+id/artifactImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/artifact_image" />
+
+        <TextView
+            android:id="@+id/artifactName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:id="@+id/artifactCatalogue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/artifactPhysicalDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/artifactCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/artifactRestrictions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/artifactSource"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btnLaunchAR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="View in AR" />
+
+    </LinearLayout>
+</ScrollView>

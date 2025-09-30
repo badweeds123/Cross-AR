@@ -8,41 +8,50 @@
 
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/arlogo"
-    android:contentDescription="App Logo"
-    android:layout_marginBottom="16dp" />
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginBottom="1dp"
+        android:contentDescription="App Logo"
+        android:src="@drawable/arlogo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CrossAR"
-        android:textSize="35sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         android:textColor="#7B2C2C"
         android:fontFamily="serif"
         android:layout_marginBottom="24dp"/>
 
-    <!-- Email input -->
-    <EditText
-        android:id="@+id/etEmail"
+    <!-- Username input -->
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"
-        android:backgroundTint="#7B2C2C"
-        android:textColor="#2E2E2E"/>
+        android:hint="Username">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <!-- Password input -->
-    <EditText
-        android:id="@+id/etPassword"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
-        android:inputType="textPassword"
-        android:backgroundTint="#7B2C2C"
-        android:textColor="#2E2E2E"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <!-- Login button -->
     <Button
@@ -51,8 +60,13 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:textColor="#F5F2E7"
-        android:backgroundTint="#7B2C2C"
-        android:layout_marginTop="16dp"/>
+        android:background="@drawable/btn_login_selector"
+        android:layout_marginTop="16dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        />
+
 
     <!-- Register text -->
     <TextView

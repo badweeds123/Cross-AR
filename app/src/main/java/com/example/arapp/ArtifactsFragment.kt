@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 class ArtifactsFragment : Fragment() {
@@ -14,21 +15,30 @@ class ArtifactsFragment : Fragment() {
     private lateinit var dbHelper: DatabaseHelper
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.activity_artifacts_list, container, false)
+
+        // Inflate the correct layout
+        val view = inflater.inflate(R.layout.fragment_artifacts, container, false)
 
         dbHelper = DatabaseHelper(requireContext())
+
+        // ListView that shows all artifact names
         val listView: ListView = view.findViewById(R.id.listViewArtifacts)
 
         val artifacts = dbHelper.getArtifacts()
         val artifactNames = artifacts.map { it.name }
 
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, artifactNames)
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            artifactNames
+        )
         listView.adapter = adapter
 
-        // ✅ On click, open detail activity
+        // When an item is tapped, open the detail screen
         listView.setOnItemClickListener { _, _, position, _ ->
             val selectedArtifact = artifacts[position]
 
@@ -38,6 +48,10 @@ class ArtifactsFragment : Fragment() {
             }
             startActivity(intent)
         }
+
+        // ✅ Set the header text safely
+        val descriptionView = view.findViewById<TextView>(R.id.description)
+        descriptionView.text = "📜 Artifacts Page"
 
         return view
     }
